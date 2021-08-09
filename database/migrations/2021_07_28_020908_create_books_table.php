@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
             $table->longText('description');
             $table->string('image_url');
             $table->foreignId('author_id');
-            $table->foreignId('pulisher_id');
+            $table->foreignId('publisher_id');
             $table->double('rating')->default(0);
             $table->integer('stock')->default(0);
             $table->timestamps();

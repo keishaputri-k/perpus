@@ -29,15 +29,15 @@ class AuthorController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
             $status = 'error';
-            return response()->json(compact('status', 'th'), 200);
+            return response()->json(compact('status', 'th'), 401);
         }
     }
 
-    public function updateAuthor(Request $request){
+    public function updateAuthor(Request $request, $id){
         $data = $request->all();
 
         try {
-            $author = new Authors();
+            $author = Authors::findOrFail($id);
             $author->name = $data['name'];
             $author->description = $data['description'];
             $author->url = $data['url'];
@@ -49,7 +49,7 @@ class AuthorController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
             $status = 'error';
-            return response()->json(compact('status', 'th'), 200);
+            return response()->json(compact('status', 'th'), 401);
         }
     }
 
